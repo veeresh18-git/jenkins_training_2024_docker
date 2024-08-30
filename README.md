@@ -15,3 +15,19 @@ docker -  need to have login for the frist time manually......
 
 vi /etc/sudoers.d/ -- privalage escalation
 nopasswd
+
+docker commands:
+------------------
+sudo docker build -t veerimage:v1 .
+sudo docker tag veerimage:v1 docker.io/veer18/veerimage:v1
+sudo docker push  docker.io/veer18/veerimage:v1
+sudo docker rm -f myos1
+sudo docker pull veer18/veerimage:v1
+sudo docker run --name myos1 -dit -p 80:80 veer18/veerimage:v1
+sudo curl http://13.127.72.86/| grep 'welcome'
+if [$? == 0]
+then
+  exit 0
+else
+  exit 1
+fi
